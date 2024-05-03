@@ -8,5 +8,5 @@ Using java and processing to simulate the path of the UAV
    ├─java
    │  ├─com
    │  │  ├─uav
-   ├─Progessing
+   ├─Processing
 ```
