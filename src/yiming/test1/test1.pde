@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 float angle = 0;
 float radius = 5;
 int increment = 5;
@@ -6,6 +8,8 @@ float x = 0;
 float y = 0;
 float x2, y2;
 boolean mouseBool = false;
+ArrayList<Waypoint> coords = new ArrayList<Waypoint>();
+
 
 void setup() {
     size(600, 600);
@@ -27,7 +31,7 @@ void mouseClicked(){
         x = mouseX;
         y = mouseY;
         mouseBool = true;
-        spiral(x,y, mouseClick);
+        spiral(x,y, 50);
     }
 
     if(mouseClick%2 == 0){
@@ -38,11 +42,12 @@ void mouseClicked(){
     }
 }
 
-void addToSpiral(){
+void addToSpiral(int dotIndex){
     strokeWeight(4);
     stroke(255, 0, 0); // Set stroke color to red
     x2 = cos(radians(angle)) * radius; // Calculate x-coordinate based on angle and radius
     y2 = sin(radians(angle)) * radius; // Calculate y-coordinate based on angle and radius
+    coords.get(dotIndex).setCoord(x2, y2);
     float d = dist(0, 0, x2, y2);
     point(x2, y2); // Draw a point at the calculated position
     angle += ((increment / d) * 150); // Increment the angle for the next point
@@ -54,6 +59,7 @@ void addToSpiral(){
 void spiral(float originX, float originY, int dots){
     translate(originX, originY); // Move the origin to the center of the canvas
     for(int i = 0; i<dots; i++){
-        addToSpiral();
+        addToSpiral(i);
+        coords.add(new Waypoint());
     }
 }
