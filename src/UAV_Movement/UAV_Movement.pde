@@ -23,7 +23,7 @@ void setup() {
 void draw() {
     background(0);
     if(mouseBool){
-        background(0);
+        // background(0);
         loadSpiral();
         drone1.move(0,0, coords.get(position/slowness).x, coords.get(position/slowness).y);
         drone1.display();
@@ -35,6 +35,8 @@ void draw() {
 void mouseClicked(){
     mouseClick ++;
     System.out.println("Click "+mouseClick);
+
+    // First click show the spiral
      if(mouseClick%2 == 1){
         x = mouseX;
         y = mouseY;
@@ -42,6 +44,7 @@ void mouseClicked(){
         spiral(x,y, 50);
     }
 
+    // Second click erase the spiral
     if(mouseClick%2 == 0){
         mouseBool = false;
         background(0);
