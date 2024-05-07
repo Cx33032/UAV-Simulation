@@ -1,6 +1,3 @@
-package yiming.test1;
-
-
 public class Waypoint{
     float x;
     float y; 
@@ -16,5 +13,9 @@ public class Waypoint{
     public void setCoord(float x, float y){
         this.x = x;
         this.y = y;
+    }
+
+    public String toString(){
+        return "("+x+", "+y+")";
     }
 }
