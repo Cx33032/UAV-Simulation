@@ -4,7 +4,7 @@ float angle = 0;
 float radius = 5;
 int increment = 5;
 int mouseClick = 0;
-int position = -1;
+int position = 0;
 int slowness = 2;
 float x = 0;
 float y = 0;
@@ -21,16 +21,16 @@ void setup() {
 }
 
 void draw() {
-    //background(0);
+    background(0);
     if(mouseBool){
         position += movement;
-        //background(0);
+        if(position==(coords.size()*slowness)|| position==0){
+            movement*=-1;
+            position+=movement;
+        }
         loadSpiral();
         drone1.move(0,0, coords.get(position/slowness).x, coords.get(position/slowness).y);
         drone1.display();
-        if(position==(coords.size()*slowness)){
-            movement*=-1;
-        }
     }
 }
 
