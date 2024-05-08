@@ -27,6 +27,7 @@ Using java and processing to simulate the path of the UAV
 - Possibly using google maps? (GPS)  
 ### Drone flight patterns
 - Spiral pattern  
+![Flight Pattern](images/flight_pattern.png)
 ### Drone movement
 - Making fluid movement rather than teleporting  
 ### Customizing number of drones
