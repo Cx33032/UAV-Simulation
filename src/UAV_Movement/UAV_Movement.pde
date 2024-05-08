@@ -4,7 +4,7 @@ float angle = 0;
 float radius = 5;
 int increment = 5;
 int mouseClick = 0;
-int position = 0;
+int position = -1;
 int slowness = 2;
 float x = 0;
 float y = 0;
@@ -12,7 +12,7 @@ float x2, y2;
 boolean mouseBool = false;
 UAV drone1;
 ArrayList<Waypoint> coords = new ArrayList<Waypoint>();
-
+int movement = 1;
 
 void setup() {
     size(600, 600);
@@ -21,14 +21,16 @@ void setup() {
 }
 
 void draw() {
-    background(0);
+    //background(0);
     if(mouseBool){
-        background(0);
+        position += movement;
+        //background(0);
         loadSpiral();
         drone1.move(0,0, coords.get(position/slowness).x, coords.get(position/slowness).y);
         drone1.display();
-        position += 1;
-        position%=(coords.size()*slowness);
+        if(position==(coords.size()*slowness)){
+            movement*=-1;
+        }
     }
 }
 
