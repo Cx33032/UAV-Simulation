@@ -45,4 +45,5 @@ Using java and processing to simulate the path of the UAV
 - [ ] Brainstorm flight paths for multiple drones at once (1 day)
 - [ ] Avoiding rivers, trees, and houses (2 or 3 days)
 - [ ] Figuring out the google maps API (1 - 2 days) 
+- [ ] Figuring out the google maps API (1 - 2 days)  
 - [ ] Applying the google maps API and adding zooming (2 days)  
