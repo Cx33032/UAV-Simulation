@@ -1,0 +1,7 @@
+{
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "h:\\Backup_D\\Harryjin\\python\\Github\\enviroment\\Unfolding\\library\\Unfolding.jar",
+        "h:\\Backup_D\\Harryjin\\python\\Github\\enviroment\\processing-4.3\\core\\library\\core.jar"
+    ]
+}
