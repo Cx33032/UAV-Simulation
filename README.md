@@ -35,3 +35,9 @@ Using java and processing to simulate the path of the UAV
 - Delegate search zones to each drone  
 - 1 to 4 drones  
 - Changes flight patterns  
+
+## To-Do List
+- [ ] Smooth UAV movement(1 - 2 days)  
+- [ ] Making multiple flight patterns (1 - 2 days)  
+- [ ] Figuring out the google maps API (1 - 2 days)  
+- [ ] Applying the google maps API and adding zooming (2 days)  
