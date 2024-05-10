@@ -15,8 +15,7 @@ ArrayList<Waypoint> coords = new ArrayList<Waypoint>();
 int movement = 1;
 
 void setup() {
-    fullScreen();
-    //size(600, 600);
+    size(1200, 1200);
     background(0);
     drone1 = new UAV(0, 0, 0, 0, 10);
 }
