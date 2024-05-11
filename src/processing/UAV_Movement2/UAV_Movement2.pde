@@ -6,6 +6,7 @@ int increment = 5;
 int mouseClick = 0;
 int position = 0;
 int slowness = 2;
+float counter = 0;
 float x = 0;
 float y = 0;
 float x2, y2;
@@ -15,7 +16,8 @@ ArrayList<Waypoint> coords = new ArrayList<Waypoint>();
 int movement = 1;
 
 void setup() {
-    size(1200, 1200);
+    fullScreen();
+    //size(600, 600);
     background(0);
     drone1 = new UAV(0, 0, 0, 0, 10);
 }
@@ -53,17 +55,19 @@ void mouseClicked(){
 }
 
 void addToSpiral(int dotIndex, float originX, float originY){
+    counter +=1;
+    x2 = cos(radians(angle))*radius;
+    y2 = sin(radians(angle))*radius;
+    stroke(0);
     strokeWeight(4);
-    stroke(255, 0, 0); // Set stroke color to red
-    x2 = cos(radians(angle)) * radius; // Calculate x-coordinate based on angle and radius
-    y2 = sin(radians(angle)) * radius; // Calculate y-coordinate based on angle and radius
+    point(x,y);
+
     coords.get(dotIndex).setCoord(x2 + originX, y2 + originY);
-    float d = dist(0, 0, x2, y2);
-    point(x2, y2); // Draw a point at the calculated position
-    angle =(radius>10)? angle + ((increment / d) * 100): angle + 5; // Increment the angle for the next point
-    angle %= 360;
-    // println(angle);
-    radius += 1 / d * 50; // Increase the radius for the next point
+    
+    float arcLen = (counter<20)? radius/3: radius/5;
+    float angleIncrease = arcLen/(2*(float)Math.PI*radius)*360;
+    angle+=(angleIncrease);
+    radius+=1;
 }
 
 void spiral(float originX, float originY, int dots){
