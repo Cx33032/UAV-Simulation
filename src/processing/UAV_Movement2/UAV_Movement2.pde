@@ -38,7 +38,8 @@ void draw() {
 
 void mouseClicked(){
     mouseClick ++;
-    System.out.println("Click "+mouseClick);
+    System.out.println("Click " + mouseClick);
+    // odd-time click show the route
      if(mouseClick%2 == 1){
         x = mouseX;
         y = mouseY;
@@ -46,6 +47,7 @@ void mouseClicked(){
         spiral(x,y, 200);
     }
 
+    //even-time click erase the route
     if(mouseClick%2 == 0){
         mouseBool = false;
         background(0);
