@@ -1,6 +1,19 @@
 # UAV-Simulation
-Hello World  
-Using java and processing to simulate the path of the UAV
+Using java and processing to simulate the path of the UAV  
+Reference for the [codrone_edu](https://docs.robolink.com/docs/codrone-edu/python/reference/library/)
+
+## Codrone Quick Start
+### Python Download
+Suggest to use python 3.7-3.11, [link](https://www.python.org/downloads/)
+### Install Dependencies
+```shell
+pip install -r requirements.txt
+```
+### Test Codrone
+```shell
+# src/python/codrone_test
+python test.py
+```
 
 ## File Structure
 ```
