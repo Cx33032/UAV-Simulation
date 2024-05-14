@@ -11,6 +11,9 @@ drone.takeoff()
 while True:
     drone.reset_move()
     status = drone.get_sensor_data()
+    print(f'Battery left: {drone.get_battery()}%')
+    print(drone.get_flight_state())
+
     command = input('Enter Your Command: ')
     if command == 'land':
         drone.land()
