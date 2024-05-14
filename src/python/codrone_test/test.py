@@ -1,3 +1,6 @@
+# Reference for the codrone: 
+# https://docs.robolink.com/docs/codrone-edu/python/reference/library/
+
 from codrone_edu.drone import *
 import os, sys
 
