@@ -29,7 +29,6 @@ public class UAV{
     public void move(){
         moving = !end.equals(x,y);
         if(moving){
-            stopped = false;
             this.x += xSpeed;
             this.y += ySpeed;
         }
