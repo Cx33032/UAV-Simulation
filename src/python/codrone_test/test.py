@@ -18,7 +18,9 @@ def get_parameter(input_str, cmd) -> int:
 drone = Drone()
 drone.pair()
 
+drone.reset_sensor()
 drone.takeoff()
+
 while True:
     drone.reset_move()
     status = drone.get_sensor_data()
@@ -59,7 +61,13 @@ while True:
         distance = (temp_dis if temp_dis > 0 and temp_dis < 100 else 50)
         drone.move_left(distance=distance, units="cm", speed=1)
         time.sleep(1)
-        
+
+    elif command.find('face') != -1:
+        temp_dis = get_parameter(command, 'face')
+        heading = (temp_dis if temp_dis >= 0 and temp_dis <= 360 else 0)
+        drone.send_absolute_position(0, 0, 0, 0, heading, 30)
+        time.sleep(1)
+    
     elif command == 'status':
         for i in range(len(status)):
             print(f'{i} {status[i]}')
