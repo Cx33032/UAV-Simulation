@@ -18,15 +18,16 @@ def get_parameter(input_str, cmd) -> int:
 drone = Drone()
 drone.pair()
 
-drone.reset_sensor()
 drone.takeoff()
 
 while True:
     drone.reset_move()
     status = drone.get_sensor_data()
+    angle_now = int(drone.get_z_angle())
     print(f'Battery left: {drone.get_battery()}%')
+    print(f'Facing angle: {angle_now} degrees')
     print(drone.get_flight_state())
-    time.sleep(1)
+    # time.sleep(1)
     
     command = input('Enter Your Command: ')
     if command == 'land':
@@ -38,35 +39,47 @@ while True:
         drone.flip()
         time.sleep(1)
         
+    elif command == 'triangle':
+        drone.triangle()
+        time.sleep(1)
+
+    elif command == 'circle':
+        drone.circle()
+        time.sleep(1)
+
+    elif command == 'square':
+        drone.square()
+        time.sleep(1)
+        
     elif command.find('forward') != -1:
         temp_dis = get_parameter(command, 'forward')
         distance = (temp_dis if temp_dis > 0 and temp_dis < 100 else 50)
         drone.move_forward(distance=distance, units="cm", speed=1)
-        time.sleep(1)
+        time.sleep(2)
         
     elif command.find('back') != -1:
         temp_dis = get_parameter(command, 'back')
         distance = (temp_dis if temp_dis > 0 and temp_dis < 100 else 50)
         drone.move_backward(distance=distance, units="cm", speed=1)
-        time.sleep(1)
+        time.sleep(2)
         
     elif command.find('right') != -1:
         temp_dis = get_parameter(command, 'right')
         distance = (temp_dis if temp_dis > 0 and temp_dis < 100 else 50)
         drone.move_right(distance=distance, units="cm", speed=1)
-        time.sleep(1)
+        time.sleep(2)
         
     elif command.find('left') != -1:
         temp_dis = get_parameter(command, 'left')
         distance = (temp_dis if temp_dis > 0 and temp_dis < 100 else 50)
         drone.move_left(distance=distance, units="cm", speed=1)
-        time.sleep(1)
+        time.sleep(2)
 
     elif command.find('face') != -1:
         temp_dis = get_parameter(command, 'face')
         heading = (temp_dis if temp_dis >= 0 and temp_dis <= 360 else 0)
-        drone.send_absolute_position(0, 0, 0, 0, heading, 30)
-        time.sleep(1)
+        drone.turn_degree(heading - angle_now)
+        time.sleep(2)
     
     elif command == 'status':
         for i in range(len(status)):
