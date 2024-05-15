@@ -3,6 +3,8 @@
 
 from codrone_edu.drone import *
 import os, sys
+now_dir = os.getcwd()
+sys.path.append(now_dir) # Add the working directory to the path
 
 def get_parameter(input_str, cmd) -> int: 
     input_str = input_str.replace(cmd, '').replace('\n', '')
@@ -55,6 +57,7 @@ while True:
         temp_dis = get_parameter(command, 'forward')
         distance = (temp_dis if temp_dis > 0 and temp_dis < 100 else 50)
         drone.move_forward(distance=distance, units="cm", speed=1)
+        # drone.send_absolute_position()
         time.sleep(2)
         
     elif command.find('back') != -1:
