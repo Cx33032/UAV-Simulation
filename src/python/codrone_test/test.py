@@ -4,6 +4,17 @@
 from codrone_edu.drone import *
 import os, sys
 
+def get_parameter(input_str, cmd) -> int: 
+    input_str = input_str.replace(cmd, '').replace('\n', '')
+    
+    try:
+        param_int = (int)(input_str.split(' ')[1])
+    except:
+        return -1
+    
+    return param_int
+    
+
 drone = Drone()
 drone.pair()
 
@@ -13,22 +24,42 @@ while True:
     status = drone.get_sensor_data()
     print(f'Battery left: {drone.get_battery()}%')
     print(drone.get_flight_state())
-
+    time.sleep(1)
+    
     command = input('Enter Your Command: ')
     if command == 'land':
         drone.land()
         drone.close()
         break
+    
     elif command == 'flip':
         drone.flip()
-    elif command == 'forward':
-        drone.move_forward(distance=50, units="cm", speed=1)
-    elif command == 'back':
-        drone.move_backward(distance=50, units="cm", speed=1)
-    elif command == 'right':
-        drone.move_right(distance=50, units="cm", speed=1)
-    elif command == 'left':
-        drone.move_left(distance=50, units="cm", speed=1)
+        time.sleep(1)
+        
+    elif command.find('forward') != -1:
+        temp_dis = get_parameter(command, 'forward')
+        distance = (temp_dis if temp_dis > 0 and temp_dis < 100 else 50)
+        drone.move_forward(distance=distance, units="cm", speed=1)
+        time.sleep(1)
+        
+    elif command.find('back') != -1:
+        temp_dis = get_parameter(command, 'back')
+        distance = (temp_dis if temp_dis > 0 and temp_dis < 100 else 50)
+        drone.move_backward(distance=distance, units="cm", speed=1)
+        time.sleep(1)
+        
+    elif command.find('right') != -1:
+        temp_dis = get_parameter(command, 'right')
+        distance = (temp_dis if temp_dis > 0 and temp_dis < 100 else 50)
+        drone.move_right(distance=distance, units="cm", speed=1)
+        time.sleep(1)
+        
+    elif command.find('left') != -1:
+        temp_dis = get_parameter(command, 'left')
+        distance = (temp_dis if temp_dis > 0 and temp_dis < 100 else 50)
+        drone.move_left(distance=distance, units="cm", speed=1)
+        time.sleep(1)
+        
     elif command == 'status':
         for i in range(len(status)):
             print(f'{i} {status[i]}')
