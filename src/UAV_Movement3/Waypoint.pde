@@ -1,7 +1,8 @@
 public class Waypoint{
     float x;
-    float y;
+    float y; 
     float thickness = 4;
+    int[] colour = {255, 0, 0};
 
     public Waypoint(){
 
@@ -21,15 +22,15 @@ public class Waypoint{
     }
 
     public void display(){
+        stroke(colour[0], colour[1], colour[2]);
         strokeWeight(thickness);
-        stroke(255, 0, 0);
         point(x, y);
     }
 
-    public boolean equals(float otherX, float otherY){
-        float diffX = Math.abs(x-otherX);
-        float diffY = Math.abs(y-otherY);
-        if(diffX<=0.1 && diffY<=0.1){
+    public boolean equals(float x2, float y2){
+        float dx = Math.abs(x2 - x);
+        float dy = Math.abs(y2 - y);
+        if(dx<=0.01 && dy<=0.01){
             return true;
         }
         return false;
