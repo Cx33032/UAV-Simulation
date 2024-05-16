@@ -1,7 +1,7 @@
 public class Waypoint{
     float x;
     float y;
-    float thickness = 1;
+    float thickness = 4;
 
     public Waypoint(){
 
@@ -27,7 +27,9 @@ public class Waypoint{
     }
 
     public boolean equals(float otherX, float otherY){
-        if(otherX==x && otherY==y){
+        float diffX = Math.abs(x-otherX);
+        float diffY = Math.abs(y-otherY);
+        if(diffX<=0.1 && diffY<=0.1){
             return true;
         }
         return false;
