@@ -15,6 +15,26 @@ pip install -r requirements.txt
 python test.py
 ```
 
+### Usage
+```shell
+Enter a command: 
+Pre-Build commands in codrone_edu: 
+land        Land the drone and stop the program, Ctrl^C will have the same result
+flip        Let the drone do a flip move, only valid when the battery is above 50%
+triangle    The drone will fly in a triangle pattern
+circle      The drone will make a circular roll
+square      The drone will fly in a square pattern
+status      Check the status of the drone, referring to https://docs.robolink.com/docs/codrone-edu/python/Sensors/34-get_sensor_data
+
+Special commands: 
+forward [value]   Move forward 'value' centimeters (0 < value < 100, default is 50)
+back [value]      Move backward 'value' centimeters (0 < value < 100, default is 50)
+right [value]     Move forward 'right' centimeters (0 < value < 100, default is 50)
+left [value]      Move forward 'left' centimeters (0 < value < 100, default is 30)
+face [value]      Facing 'value' (0 <= value <= 360) 
+spiral            Move in a spiral pattern (Rescue simulation)
+```   
+
 ## File Structure
 ```
 ├─src

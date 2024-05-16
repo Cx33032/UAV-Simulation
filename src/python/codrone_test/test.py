@@ -27,6 +27,8 @@ def land_drone():
     drone.land()
     drone.close()
 
+# The move method is controlled by send_absolute_value which I think it will only move based on the initial value
+'''
 def spiral_pattern():
     for i in range(1, 4):
         time_sleep = (50 * i / 100.0 + 1 if (50 * i / 100.0 + 1) > 2 else 2) + 1
@@ -47,6 +49,16 @@ def spiral_pattern():
             drone.move_right(distance=50 * i, units="cm", speed=1)
             time.sleep(time_sleep)
         time.sleep(1)
+'''
+
+def spiral_pattern():
+    for i in range(1, 4):
+        if i % 2 == 0:
+            drone.sendControlWhile(0, -50, 0, 0, i)
+            drone.sendControlWhile(-50, 0, 0, 0, i)
+        else:
+            drone.sendControlWhile(0, 50, 0, 0, i)
+            drone.sendControlWhile(50, 0, 0, 0, i)
 
 drone.set_throttle(50)
 drone.move(0.5)
