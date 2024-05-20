@@ -18,7 +18,7 @@ void setup() {
     size(1200, 1200);
     background(0);
     spiral(width/2, height/2, 500);
-    drone1 = new UAV(0, 0, 4.8, 4.8, 10);
+    drone1 = new UAV(0, 0, 1, 1, 10);
     drone1.setDestination(coords.get(0));
 }
 
@@ -38,6 +38,7 @@ void addToSpiral(int dotIndex, float originX, float originY){
     y2 = sin(radians(angle)) * radius; // Calculate y-coordinate based on angle and radius
     coords.get(dotIndex).setCoord(x2 + originX, y2 + originY);
     angle =(radius>10)? (angle + (increment/radius))%360: (angle + (increment/radius/10))%360; // Increment the angle for the next point
+    System.out.println(angle);
     // println(angle);
     radius += (radius<20)? increment/radius/20: increment/radius/5; // Increase the radius for the next point
     //System.out.println(200/radius);
