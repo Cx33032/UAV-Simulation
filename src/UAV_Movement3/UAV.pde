@@ -6,7 +6,7 @@ public class UAV{
     float radius;
     Waypoint destination;
     int direction = 1;
-    int position = 0;
+    int position = 1;
     float vx, dx; //Horizontal speed and distance
     float vy, dy; //Vertical speed and distance
 
@@ -32,11 +32,11 @@ public class UAV{
         if(moving){
             this.x += vx;
             this.y += vy;
-            System.out.println("("+x+", "+y+")");
+            //System.out.println("("+x+", "+y+")");
             setDestination(destination);
         } else{
-            System.out.println("Destination reached");
-            System.out.println("------------"+"\n");
+            //System.out.println("Destination reached");
+            //System.out.println("------------"+"\n");
             position+=direction;
             if(position==UAV_Movement3.coords.size()||position==-1){
                 direction*=-1;
@@ -53,8 +53,10 @@ public class UAV{
         dy = w1.y - y;
         vx = (5*xSpeed>1)? dx/(5*xSpeed): dx;
         vy = (5*ySpeed>1)? dy/(5*ySpeed): dy;
-        System.out.println("------------");
-        System.out.println("destination: "+w1);
-        System.out.println("dx: "+dx+" dy: "+dy+" vx: "+vx+" vy: "+vy);
+        //vx = dx/(5*xSpeed);
+        //vy = dy/(5*ySpeed);
+        //System.out.println("------------");
+        //System.out.println("destination: "+w1);
+        //System.out.println("dx: "+dx+" dy: "+dy+" vx: "+vx+" vy: "+vy);
     }
 }
