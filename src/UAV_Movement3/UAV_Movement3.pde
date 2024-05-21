@@ -19,9 +19,9 @@ void setup() {
     background(0);
     //spiral(width/2, height/2, 500);
     coords.add(new Waypoint(width/2, height/2));
-    squareSpiral(10, coords.get(0).x, coords.get(0).y);
-    drone1 = new UAV(coords.get(0).x, coords.get(0).y, 0.1, 0.1, 10);
-    drone1.setDestination(coords.get(0));
+    squareSpiral(20);
+    drone1 = new UAV(coords.get(0).x, coords.get(0).y, 1, 1, 10);
+    drone1.setDestination(coords.get(1));
 }
 
 void draw() {
@@ -61,8 +61,8 @@ void loadCoords(){
     }
 }
 
-void squareSpiral(int dots, float originX, float originY){
-    for(int i = 0; i<=dots; i++){
+void squareSpiral(int dots){
+    for(int i = 0; i<dots; i++){
         float prevY = coords.get(i).y;
         float prevX = coords.get(i).x;
         float distance = ((i+2)/2)*20;
