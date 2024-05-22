@@ -15,13 +15,19 @@ for i in range(lineCount):
 file.close() #closes the file after reading 
 '''
 
-file = open('src/python/codrone_test/testFile.txt')
-lines = file.readlines()
+# file = open('src/python/codrone_test/testFile.txt')
+# lines = file.readlines()
 
-for line in lines:
-    if line.find('Direction') != -1:
-        print(f'The direction is {line.replace('Direction: ', '')}', end = '. ')
-    else:
-        print(f'The distance is {line.replace('Move: ', '')}')
+direction = []
 
-file.close()
+direction.append('Forward')
+
+print(direction)
+
+# for line in lines:
+#     if line.find('Direction') != -1:
+#         print(f"The direction is {line.replace('Direction: ', '').replace('\n', '')}")
+#     # else:
+#     #     print(f"The distance is {line.replace("Move: ", '')}")
+
+# file.close()
