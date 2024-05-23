@@ -17,7 +17,7 @@ def takeoff():
     time.sleep(1)
     return redirect('/')
 
-@app.route('/land/', method=['GET', 'POST'])
+@app.route('/land/', methods=['GET', 'POST'])
 def land():
     print('land')
     # drone.land()
