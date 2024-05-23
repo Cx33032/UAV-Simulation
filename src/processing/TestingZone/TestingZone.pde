@@ -28,7 +28,7 @@ void draw(){
     //circleMotion();
 
     //Displays spiral motion through a constant increment in radius
-    basicSpiral();
+    //basicSpiral();
 
     //basicSpiral2();
 
