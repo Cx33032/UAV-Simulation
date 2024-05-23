@@ -3,37 +3,103 @@ import java.util.ArrayList;
 float angle = 0;
 float radius = 5;
 int increment = 1000;
-int mouseClick = 0;
-int position = 0;
-int slowness = 2;
-float x = 0;
-float y = 0;
+//int mouseClick = 0;
+//int position = 0;
+// int slowness = 2;
+// float x = 0;
+// float y = 0;
 float x2, y2;
-boolean mouseBool = false;
+float lineX1, lineX2, lineY1, lineY2;
+boolean mouseClicked = false;
+boolean textClicked = false;
+boolean destinationCreated = false;
 UAV drone1;
 static ArrayList<Waypoint> coords = new ArrayList<Waypoint>();
 int movement = 1;
+PFont quickSand;
+TextBox[] prompts = new TextBox[3];
+int promptIndex = 0;
+
+
+void setting(){
+    lineX1 = 0;
+    lineX2 = 0;
+    lineY1 = 0;
+    lineY2 = 0;
+}
 
 void setup() {
-    size(1200, 1200);
+    size(1200, 1000);
     background(0);
+    quickSand = createFont("Quicksand-Bold.otf", 48);
+    prompts[0] = new TextBox("Click starting location", 0, height-100, width, 100, color(0, 0, 255), quickSand);
+    prompts[1] = new TextBox("Click searching location", prompts[0]);
+    prompts[2] = new TextBox("Drone pathway created", prompts[0]);
     //spiral(width/2, height/2, 500);
-    coords.add(new Waypoint(width/2, height/2));
-    squareSpiral(20);
-    //spiral(coords.get(0).x, coords.get(0).y, 200);
-    drone1 = new UAV(coords.get(0).x, coords.get(0).y, 1, 1, 10);
-    drone1.setDestination(coords.get(1));
+    // coords.add(new Waypoint(width/2, height/2));
+    // squareSpiral(20);
+    // //spiral(coords.get(0).x, coords.get(0).y, 200);
+    // drone1 = new UAV(coords.get(0).x, coords.get(0).y, 1, 1, 10);
+    // drone1.setDestination(coords.get(1));
 }
 
 void draw() {
     background(0);
+    // loadCoords();
+    // drone1.display();
+    // drone1.move();
+    prompts[promptIndex].display();
+    stroke(0, 255, 0);
+    strokeWeight(1);
+    line(lineX1, lineY1, lineX2, lineY2);
     loadCoords();
-    drone1.display();
-    drone1.move();
+    if(destinationCreated){
+        drone1.display();
+        drone1.move();
+    }
 }
 
-void mouseClicked(){
-    
+void mousePressed(){
+    mouseClicked = !mouseClicked;
+    textClicked = prompts[promptIndex].touched(mouseX, mouseY);
+    System.out.println(textClicked);
+    if(!textClicked){
+        System.out.println("Mouse clicked: "+mouseClicked);
+        if(!destinationCreated && mouseClicked){
+            lineX1 = mouseX;
+            lineX2 = mouseX;
+            lineY1 = mouseY;
+            lineY2 = mouseY;
+            promptIndex = 1;
+            coords.add(new Waypoint(lineX1, lineY1));
+        } else{
+            destinationCreated = true;
+            //spiral(width/2, height/2, 500);
+            coords.add(new Waypoint(lineX2, lineY2));
+            squareSpiral(20);
+            //spiral(coords.get(0).x, coords.get(0).y, 200);
+            drone1 = new UAV(coords.get(0).x, coords.get(0).y, 0.4, 0.4, 10);
+            drone1.setDestination(coords.get(1));
+            promptIndex = 2;
+        }
+    } else{
+        mouseClicked = false;
+    }
+
+}
+
+void mouseMoved(){
+    if(!destinationCreated && mouseClicked && !textClicked){
+        lineX2 = mouseX;
+        lineY2 = mouseY;
+    }
+}
+
+void mouseDragged(){
+    if(!destinationCreated && mouseClicked && !textClicked){
+        lineX2 = mouseX;
+        lineY2 = mouseY;
+    }
 }
 
 void addToSpiral(int dotIndex, float originX, float originY){
@@ -69,16 +135,12 @@ void loadCoords(){
 }
 
 void squareSpiral(int dots){
-    for(int i = 0; i<dots; i++){
+    for(int i = 1; i<=dots; i++){
         float prevY = coords.get(i).y;
         float prevX = coords.get(i).x;
-        float distance = ((i+2)/2)*75;
+        float distance = ((i+2)/2)*60;
         float x2 = prevX;
         float y2 = prevY;
-        //Up 0 4 8
-        //Right 1 5 9
-        //Down 2 6 10
-        //Left 3 7 11
         //Vertical movement
         if(i%2==0){
             //Up
