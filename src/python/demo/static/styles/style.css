@@ -39,6 +39,15 @@ button:hover{
     background: #2ecc71;
 }
 
+button:disabled {
+    border: 2px solid #ee0000;
+    cursor: not-allowed;
+}
+
+button:disabled:hover {
+    background: #ee0000;
+}
+
 .input{
     display: inline-block;  
     /* flex-direction: column; */
