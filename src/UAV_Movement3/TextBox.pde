@@ -48,4 +48,17 @@ public class TextBox{
         return false;
     }
 
+    public void setWidth(float w){
+        this.w = w;
+    }
+
+    public void setHeight(float h){
+        this.h = h;
+    }
+
+    public void setDimensions(float w, float h){
+        setWidth(w);
+        setHeight(h);
+    }
+
 }

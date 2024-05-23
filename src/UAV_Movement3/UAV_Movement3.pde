@@ -18,6 +18,9 @@ static ArrayList<Waypoint> coords = new ArrayList<Waypoint>();
 int movement = 1;
 PFont quickSand;
 TextBox[] prompts = new TextBox[3];
+OptionBox[] options = new OptionBox[2];
+PImage[] optionImgs = new PImage[2];
+TextBox optionTextBox;
 int promptIndex = 0;
 
 
@@ -31,10 +34,23 @@ void setting(){
 void setup() {
     size(1200, 1000);
     background(0);
-    quickSand = createFont("Quicksand-Bold.otf", 48);
+    quickSand = createFont("Quicksand-LightItalic.otf", 48);
+    optionImgs[0] = loadImage("SpiralOption.png");
+    optionImgs[1] = loadImage("SquareSpiralOption.png");
+
     prompts[0] = new TextBox("Click starting location", 0, height-100, width, 100, color(0, 0, 255), quickSand);
     prompts[1] = new TextBox("Click searching location", prompts[0]);
-    prompts[2] = new TextBox("Drone pathway created", prompts[0]);
+    prompts[2] = new TextBox("Pick Drone Pattern", prompts[0]);
+    prompts[3] = new TextBox("Drone pathway created", prompts[0]);
+
+    //Option menu setup
+    optionTextBox = new TextBox("Option: ", prompts[0]);
+    optionTextBox.setCoord(100, 500);
+    optionTextBox.setDimensions(400, 100);
+    options[0] = new optionBox("Curved Spiral", optionImgs[0], 100, 100, 400, 400, optionTextBox);
+    optionTextBox.setCoord(600, 500);
+    options[1] = new optionBox("Square Spiral", optionImgs[1], 600, 100, 400, 400, optionTextBox);
+
     //spiral(width/2, height/2, 500);
     // coords.add(new Waypoint(width/2, height/2));
     // squareSpiral(20);
@@ -49,11 +65,17 @@ void draw() {
     // drone1.display();
     // drone1.move();
     prompts[promptIndex].display();
-    stroke(0, 255, 0);
-    strokeWeight(1);
-    line(lineX1, lineY1, lineX2, lineY2);
-    loadCoords();
-    if(destinationCreated){
+    if(promptIndex == 2){
+        background(255);
+        for(int i = 0; i<options.length; i++){
+            options[i].display();
+        }
+    } else if (destinationCreated){
+        stroke(0, 255, 0);
+        strokeWeight(1);
+        line(lineX1, lineY1, lineX2, lineY2);
+        loadCoords();
+        
         drone1.display();
         drone1.move();
     }
@@ -64,7 +86,7 @@ void mousePressed(){
     textClicked = prompts[promptIndex].touched(mouseX, mouseY);
     System.out.println(textClicked);
     if(!textClicked){
-        System.out.println("Mouse clicked: "+mouseClicked);
+        // System.out.println("Mouse clicked: "+mouseClicked);
         if(!destinationCreated && mouseClicked){
             lineX1 = mouseX;
             lineX2 = mouseX;
@@ -72,7 +94,7 @@ void mousePressed(){
             lineY2 = mouseY;
             promptIndex = 1;
             coords.add(new Waypoint(lineX1, lineY1));
-        } else{
+        } else if (!destinationCreated){
             destinationCreated = true;
             //spiral(width/2, height/2, 500);
             coords.add(new Waypoint(lineX2, lineY2));
