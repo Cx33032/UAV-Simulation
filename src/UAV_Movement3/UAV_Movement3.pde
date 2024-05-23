@@ -19,7 +19,8 @@ void setup() {
     background(0);
     //spiral(width/2, height/2, 500);
     coords.add(new Waypoint(width/2, height/2));
-    squareSpiral(20);
+    //squareSpiral(20);
+    spiral(coords.get(0).x, coords.get(0).y, 200);
     drone1 = new UAV(coords.get(0).x, coords.get(0).y, 1, 1, 10);
     drone1.setDestination(coords.get(1));
 }
@@ -58,6 +59,12 @@ void spiral(float originX, float originY, int dots){
 void loadCoords(){
     for(int i = 0; i<coords.size(); i++){
         coords.get(i).display();
+        if(i!=0){
+            Waypoint c1 = coords.get(i);
+            Waypoint c2 = coords.get(i-1);
+            stroke(0, 0, 255, 70);
+            line(c1.x, c1.y, c2.x, c2.y);
+        }
     }
 }
 

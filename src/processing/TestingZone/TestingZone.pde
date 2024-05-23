@@ -28,9 +28,9 @@ void draw(){
     //circleMotion();
 
     //Displays spiral motion through a constant increment in radius
-    //basicSpiral();
+    basicSpiral();
 
-    basicSpiral2();
+    //basicSpiral2();
 
 
 
@@ -49,24 +49,24 @@ void draw(){
     // radius+=5;
 }
 
-void mouseClicked(){
-    translate(width/2, height/2);
-    for(int i = 0; i<10; i++){
-        strokeWeight(2);
-        stroke(0);
-        point(x,y);
-        x = cos(radians(angle))*radius;
-        y = sin(radians(angle))*radius;
-        System.out.println(x);
-        System.out.println(y);
-        System.out.println(angle);
-        System.out.println(radius);
-        System.out.println("-----------");
-        //angle += 5;
-        //Increases next points distance from center
-        radius+=5;
-    }
-}
+// void mouseClicked(){
+//     translate(width/2, height/2);
+//     for(int i = 0; i<10; i++){
+//         strokeWeight(2);
+//         stroke(0);
+//         point(x,y);
+//         x = cos(radians(angle))*radius;
+//         y = sin(radians(angle))*radius;
+//         System.out.println(x);
+//         System.out.println(y);
+//         System.out.println(angle);
+//         System.out.println(radius);
+//         System.out.println("-----------");
+//         //angle += 5;
+//         //Increases next points distance from center
+//         radius+=5;
+//     }
+// }
 
 void periodicX(){
     radius = 20;
