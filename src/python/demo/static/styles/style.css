@@ -1,0 +1,47 @@
+/*主页面背景 Main menu backgorund*/
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background: #34495e;
+}
+
+/*所有元素的位置 The position of all the elements*/
+.box {
+    width: 400px;
+    padding: 50px;
+    position: absolute; /*绝度定位 相对于父标签定位 Locating using the super label*/
+    border-radius: 10px;
+    top: 50%; /*用比例来居中定位 Use the radio to align*/
+    left: 50%;
+    transform: translate(-50%,-50%); /*矫正因为输入框大小而导致的偏移*/
+    background: #191919;
+    text-align: center;
+    display: inline-block;
+}
+
+button { /*提交按钮的样式 */
+    border-radius: 24px;
+    border: 2px solid #2ecc71;
+    background: none;
+    display: inline-block;
+    margin: 30px auto;
+    text-align: center;
+    padding: 15px 30px;
+    outline: none;
+    color: white;
+    transition: 0.25s;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+button:hover{
+    background: #2ecc71;
+}
+
+.input{
+    display: inline-block;  
+    /* flex-direction: column; */
+    align-items: center;
+    justify-content: center;
+}
