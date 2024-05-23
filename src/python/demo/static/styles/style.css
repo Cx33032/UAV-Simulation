@@ -21,11 +21,11 @@ body {
 }
 
 button { /*提交按钮的样式 */
-    border-radius: 24px;
+    border-radius: 4px;
     border: 2px solid #2ecc71;
     background: none;
     display: inline-block;
-    margin: 30px auto;
+    margin: 30px 10px;
     text-align: center;
     padding: 15px 30px;
     outline: none;
@@ -33,6 +33,7 @@ button { /*提交按钮的样式 */
     transition: 0.25s;
     cursor: pointer;
     font-size: 18px;
+    width: 140px;
 }
 
 button:hover{
