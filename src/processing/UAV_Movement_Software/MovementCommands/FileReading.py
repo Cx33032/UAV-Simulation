@@ -11,28 +11,28 @@ for line in fileContent:
     if line.find("Direction: ") != -1:
         directions.append(line[11:].strip())
     else:
-        durations.append(line[6:].strip())
+        durations.append((int)(line[6:].strip()))
 
 file.close() #closes the file after reading 
 
-#drone = Drone()
-#drone.pair()
+drone = Drone()
+drone.pair()
 
-#drone.takeoff()
+drone.takeoff()
 time.sleep(3)
 for i in range(len(directions)):
     if directions[i] == "Forward":
-        print("Forward " + durations[i])
-        #drone.sendControlWhile(0, 100, 0, 0, durations[i])
+        #print("Forward " + durations[i])
+        drone.sendControlWhile(0, 100, 0, 0, durations[i])
     elif directions[i] == "Right":
-        print("Right " + durations[i])
-        #drone.sendControlWhile(100, 0, 0, 0, durations[i])
+        #print("Right " + durations[i])
+        drone.sendControlWhile(100, 0, 0, 0, durations[i])
     elif directions[i] == "Back":
-        print("Back " + durations[i])
-        #drone.sendControlWhile(0, -100, 0, 0, durations[i])
+        #print("Back " + durations[i])
+        drone.sendControlWhile(0, -100, 0, 0, durations[i])
     else:
-        print("Left " + durations[i])
-        #drone.sendControlWhile(-100, 0, 0, 0, durations[i])
+        #print("Left " + durations[i])
+        drone.sendControlWhile(-100, 0, 0, 0, durations[i])
 
-#drone.land()
-#drone.close()
+drone.land()
+drone.close()
