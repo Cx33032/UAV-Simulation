@@ -3,11 +3,6 @@ import java.util.ArrayList;
 float angle = 0;
 float radius = 5;
 int increment = 1000;
-//int mouseClick = 0;
-//int position = 0;
-// int slowness = 2;
-// float x = 0;
-// float y = 0;
 float x2, y2;
 float lineX1, lineX2, lineY1, lineY2;
 boolean mouseClicked = false;
@@ -51,21 +46,11 @@ void setup() {
     options[0] = new OptionBox("Curved Spiral", optionImgs[0], 100, 100, 400, 400, optionTextBox);
     optionTextBox.setCoord(600, 500);
     options[1] = new OptionBox("Square Spiral", optionImgs[1], 600, 100, 400, 400, optionTextBox);
-    output = createWriter("Files/movements.txt");
-    
-    //spiral(width/2, height/2, 500);
-    // coords.add(new Waypoint(width/2, height/2));
-    // squareSpiral(20);
-    // //spiral(coords.get(0).x, coords.get(0).y, 200);
-    // drone1 = new UAV(coords.get(0).x, coords.get(0).y, 1, 1, 10);
-    // drone1.setDestination(coords.get(1));
+    output = createWriter("MovementCommands/movements.txt");
 }
 
 void draw() {
     background(0);
-    // loadCoords();
-    // drone1.display();
-    // drone1.move();
     if(promptIndex == 2){
         background(255);
         for(int i = 0; i<options.length; i++){
@@ -91,9 +76,8 @@ void draw() {
 void mousePressed(){
     mouseClicked = !mouseClicked;
     textClicked = prompts[promptIndex].touched(mouseX, mouseY);
-    System.out.println(textClicked);
+
     if(!textClicked){
-        // System.out.println("Mouse clicked: "+mouseClicked);
         if(!destinationCreated && mouseClicked){
             lineX1 = mouseX;
             lineX2 = mouseX;
@@ -152,17 +136,11 @@ void addToSpiral(int dotIndex, float originX, float originY){
         y2 = sin(radians(angle)) * radius; // Calculate y-coordinate based on angle and radius
         coords.add(new Waypoint(x2 + originX, y2 + originY));
     }
-    // coords.get(dotIndex).setCoord(x2 + originX, y2 + originY);
     angle =(radius>10)? (angle + (increment/radius))%360: (angle + (increment/radius/10))%360; // Increment the angle for the next point
-    //System.out.println(angle+": ("+x2+originX+", "+y2+originY+")");
-    // println(angle);
     radius += (radius<20)? increment/radius/20: increment/radius/5; // Increase the radius for the next point
-    //System.out.println(200/radius);
 }
 
 void spiral(float originX, float originY, int dots){
-    //coords.clear();
-    //translate(originX, originY); // Move the origin to the center of the canvas
     for(int i = 0; i<dots; i++){
         //coords.add(new Waypoint());
         addToSpiral(i, originX, originY);
