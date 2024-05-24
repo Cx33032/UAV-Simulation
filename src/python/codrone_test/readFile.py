@@ -1,19 +1,37 @@
+from codrone_edu.drone import *
+import os, sys, time
+
 file = open("src/python/codrone_test/testFile.txt")
 fileContent = file.readlines() #reads the contents of the file, every line
 
 directions = []
-distances = []
+durations = []
 
 for line in fileContent:
     if line.find("Direction: ") != -1:
         directions.append(line[11:].strip())
     else:
-        distances.append(line[6:].strip())
-
-for i in range(len(directions)):
-    print(directions[i] + ": " + distances[i])
+        durations.append(line[6:].strip())
 
 file.close() #closes the file after reading 
+
+drone = Drone()
+drone.pair()
+
+drone.takeoff()
+time.sleep(3)
+for i in range(len(directions)):
+    if directions[i] == "Forward":
+        drone.sendControlWhile(0, 100, 0, 0, durations[i])
+    elif directions[i] == "Right":
+        drone.sendControlWhile(100, 0, 0, 0, durations[i])
+    elif directions[i] == "Down":
+        drone.sendControlWhile(0, -100, 0, 0, durations[i])
+    else:
+        drone.sendControlWhile(-100, 0, 0, 0, durations[i])
+
+drone.land()
+drone.close()
 
 '''
 file = open('src/python/codrone_test/testFile.txt')
