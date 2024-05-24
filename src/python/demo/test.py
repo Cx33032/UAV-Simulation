@@ -3,6 +3,7 @@ from codrone_edu.drone import *
 import time
 
 app = Flask(__name__)
+
 drone = Drone()
 # 
 
@@ -70,10 +71,9 @@ def spiral():
             drone.sendControlWhile(0, 100, 0, 0, i * 500)
             drone.sendControlWhile(100, 0, 0, 0, i * 500)
             print(drone.get_position_data)
-    
+            
     drone.reset_move()
     return redirect('/air/')
-    
 
 if __name__ == '__main__':
     app.run(debug=True)
