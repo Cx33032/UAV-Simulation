@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<header>
+    <meta charset="utf-8">
+    <title>Test Page</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='styles/style.css') }}">
+</header>
+
+<body>
+    <div class="box">
+            <div class="input"><form action="/takeoff"><button name="button" onclick="takeoff" disabled>Takeoff</button></form></div>
+        
+            <div class="input"><form action="/land"><button name="button" onclick="land">Land</button></form></div><br>
+
+            <div class="input">
+                <form action="/forward"><button name="forward-btn" onclick="forward">Forward</button></form>
+            </div><br>
+
+            <div class="input">
+                <form action="/left"><button name="left-btn" onclick="left">Left</button></form>
+            </div>
+
+            <div class="input">
+                <form action="/right"><button name="right-btn" onclick="right">Right</button></form>
+            </div><br>
+
+            <div class="input">
+                <form action="/backward"><button name="backward-btn" onclick="backward">Backward</button></form>
+            </div><br>
+
+    	    <div class="input">
+    		    <form action="/spiral"><button name="spiral-btn" onclick="spiral">Spiral</button></form>
+    	    </div>
+    </div>
+</body>
