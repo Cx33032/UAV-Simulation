@@ -3,6 +3,8 @@ from codrone_edu.drone import *
 import time
 
 app = Flask(__name__)
+# drone = Drone()
+# drone.pair()
 drone = Drone()
 # 
 
@@ -18,6 +20,7 @@ def air():
 @app.route('/takeoff/', methods=['GET', 'POST'])
 def takeoff():
     print('takeoff')
+    # drone.takeoff()
     drone.pair()
     drone.takeoff()
     time.sleep(1)
@@ -26,6 +29,8 @@ def takeoff():
 @app.route('/land/', methods=['GET', 'POST'])
 def land():
     print('land')
+    # drone.land()
+    # drone.close()
     drone.land()
     drone.close()
     time.sleep(1)
@@ -34,6 +39,7 @@ def land():
 @app.route('/forward/', methods=['GET', 'POST'])
 def forward():
     print('forward')
+    # drone.sendControlWhile(0, 100, 0, 0, 500)
     drone.sendControlWhile(0, 100, 0, 0, 500)
     time.sleep(1)
     return redirect('/air/')
@@ -41,6 +47,7 @@ def forward():
 @app.route('/backward/', methods=['GET', 'POST'])
 def backward():
     print('backward')
+    # drone.sendControlWhile(0, -100, 0, 0, 500)
     drone.sendControlWhile(0, -100, 0, 0, 500)
     time.sleep(1)
     return redirect('/air/')
@@ -48,6 +55,7 @@ def backward():
 @app.route('/left/', methods=['GET', 'POST'])
 def left():
     print('left')
+    # drone.sendControlWhile(-100, 0, 0, 0, 500)
     drone.sendControlWhile(-100, 0, 0, 0, 500)
     time.sleep(1)
     return redirect('/air/')
@@ -55,6 +63,7 @@ def left():
 @app.route('/right/', methods=['GET', 'POST'])
 def right():
     print('right')
+    # drone.sendControlWhile(100, 0, 0, 0, 500)
     drone.sendControlWhile(100, 0, 0, 0, 500)
     time.sleep(1)
     return redirect('/air/')
@@ -70,10 +79,10 @@ def spiral():
             drone.sendControlWhile(0, 100, 0, 0, i * 500)
             drone.sendControlWhile(100, 0, 0, 0, i * 500)
             print(drone.get_position_data)
-    
+
     drone.reset_move()
     return redirect('/air/')
-    
+
 
 if __name__ == '__main__':
     app.run(debug=True)
