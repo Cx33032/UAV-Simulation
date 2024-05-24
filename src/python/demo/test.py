@@ -57,6 +57,19 @@ def right():
     time.sleep(1)
     return redirect('/air/')
 
+@app.route('/spiral/', methods=['GET', 'POST'])
+def spiral():
+    for i in range(1, 4):
+        if i % 2 == 0:
+            drone.sendControlWhile(0, -100, 0, 0, i * 500)
+            drone.sendControlWhile(-100, 0, 0, 0, i * 500)
+            print(drone.get_position_data)
+        else:
+            drone.sendControlWhile(0, 100, 0, 0, i * 500)
+            drone.sendControlWhile(100, 0, 0, 0, i * 500)
+            print(drone.get_position_data)
+    return redirect('/air/')
+    
 
 if __name__ == '__main__':
     app.run(debug=True)
