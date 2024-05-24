@@ -17,8 +17,7 @@ public class UAV{
     public UAV(float x, float y, float xSpeed, float ySpeed, float radius){
         this.x = x;
         this.y = y;
-        this.xSpeed = 1/xSpeed;
-        this.ySpeed = 1/ySpeed;
+        setSpeed(xSpeed, ySpeed);
         this.radius = radius;
     }
 
@@ -58,5 +57,10 @@ public class UAV{
         //System.out.println("------------");
         //System.out.println("destination: "+w1);
         //System.out.println("dx: "+dx+" dy: "+dy+" vx: "+vx+" vy: "+vy);
+    }
+
+    public void setSpeed(float xSpeed, float ySpeed){
+        this.xSpeed = 1/xSpeed;
+        this.ySpeed = 1/ySpeed;
     }
 }

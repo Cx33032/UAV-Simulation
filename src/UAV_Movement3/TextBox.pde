@@ -48,6 +48,11 @@ public class TextBox{
         return false;
     }
 
+    public void setCoord(float x, float y){
+        this.x = x;
+        this.y = y;
+    }
+
     public void setWidth(float w){
         this.w = w;
     }
