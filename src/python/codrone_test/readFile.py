@@ -1,24 +1,49 @@
-'''
-file = open(r"src\python\codrone_test\testFile.txt", "r")
-fileContent = file.readlines() #reads the contents of the file, every line
-lineCount = len(fileContent) #how many lines are in the file
+from codrone_edu.drone import *
+import os, sys, time
 
-for i in range(lineCount):
-    line = fileContent[i] 
-    index = line.find(":") #finds the index of :
-    if (index != -1):
-        if i%2 == 0: 
-            print("Direction is: " + line[index+2:], end="") #prints everything after : for direction
-        else:
-            print("Moves: " + line[index+2:], end="") #prints everything after : for how far it moves
-    
+file = open("src/python/codrone_test/testFile.txt")
+fileContent = file.readlines() #reads the contents of the file, every line
+
+directions = []
+durations = []
+
+for line in fileContent:
+    if line.find("Direction: ") != -1:
+        directions.append(line[11:].strip())
+    else:
+        durations.append(line[6:].strip())
+
 file.close() #closes the file after reading 
+
+drone = Drone()
+drone.pair()
+
+drone.takeoff()
+time.sleep(3)
+for i in range(len(directions)):
+    if directions[i] == "Forward":
+        drone.sendControlWhile(0, 100, 0, 0, durations[i])
+    elif directions[i] == "Right":
+        drone.sendControlWhile(100, 0, 0, 0, durations[i])
+    elif directions[i] == "Down":
+        drone.sendControlWhile(0, -100, 0, 0, durations[i])
+    else:
+        drone.sendControlWhile(-100, 0, 0, 0, durations[i])
+
+drone.land()
+drone.close()
+
 '''
+file = open('src/python/codrone_test/testFile.txt')
+lines = file.readlines()
 
 # file = open('src/python/codrone_test/testFile.txt')
 # lines = file.readlines()
 
 direction = []
+
+file.close()
+'''
 
 direction.append('Forward')
 

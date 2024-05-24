@@ -1,8 +1,8 @@
 Direction: Forward
-Move: 5m
+Move: 500
 Direction: Right
-Move: 5m
+Move: 500
 Direction: Down
-Move: 10m
+Move: 1000
 Direction: Left
-Move: 10m
+Move: 1000
