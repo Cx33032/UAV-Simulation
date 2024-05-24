@@ -96,14 +96,12 @@ void mousePressed(){
                     coords.add(new Waypoint(lineX2, lineY2));
                     if(i==0){
                         spiral(coords.get(1).x, coords.get(1).y, 200);
-                        output.flush();
-                        output.close();
                         drone1.setSpeed(2, 2);
                     } else{
                         squareSpiral(20);
-                        output.flush();
-                        output.close();
                     }
+                    output.flush();
+                    output.close();
                     drone1.setDestination(coords.get(1));
                     promptIndex = 3;
                 }
@@ -171,13 +169,11 @@ void squareSpiral(int dots){
         if(i%2==0){
             //Up
             if(i%4==0){
-                System.out.println(i+": Up");
                 output.println("Direction: Forward");
                 y2 = prevY - distance;
             }
             //Down
             else{
-                System.out.println(i+": Down");
                 output.println("Direction: Back");
                 y2 = prevY + distance;
             }
@@ -186,13 +182,11 @@ void squareSpiral(int dots){
         else{
             //Left
             if((i-3)%4==0){
-                System.out.println(i+": Left");
                 output.println("Direction: Left");
                 x2 = prevX - distance;
             }
             //Right
             else{
-                System.out.println(i+": Right");
                 output.println("Direction: Right");
                 x2 = prevX + distance;
             }
