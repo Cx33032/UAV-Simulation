@@ -1,0 +1,24 @@
+{
+	"path": [
+		{"direction": "right", "duration": 100}, 
+		{"direction": "back", "duration": 200}, 
+		{"direction": "left", "duration": 200}, 
+		{"direction": "forward", "duration": 300}, 
+		{"direction": "right", "duration": 300}, 
+		{"direction": "back", "duration": 400}, 
+		{"direction": "left", "duration": 400}, 
+		{"direction": "forward", "duration": 500}, 
+		{"direction": "right", "duration": 500}, 
+		{"direction": "back", "duration": 600}, 
+		{"direction": "left", "duration": 600}, 
+		{"direction": "forward", "duration": 700}, 
+		{"direction": "right", "duration": 700}, 
+		{"direction": "back", "duration": 800}, 
+		{"direction": "left", "duration": 800}, 
+		{"direction": "forward", "duration": 900}, 
+		{"direction": "right", "duration": 900}, 
+		{"direction": "back", "duration": 1000}, 
+		{"direction": "left", "duration": 1000}, 
+		{"direction": "forward", "duration": 1100}
+	]
+}
