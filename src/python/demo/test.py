@@ -1,6 +1,9 @@
 from flask import Flask, request, render_template, redirect
 from codrone_edu.drone import *
-import time
+import os, sys, time
+now_dir = os.getcwd()
+sys.path.append(now_dir) # Add the working directory to the path
+from Movements.path import *
 
 app = Flask(__name__)
 
@@ -62,16 +65,8 @@ def right():
 
 @app.route('/spiral/', methods=['GET', 'POST'])
 def spiral():
-    for i in range(1, 4):
-        if i % 2 == 0:
-            drone.sendControlWhile(0, -100, 0, 0, i * 500)
-            drone.sendControlWhile(-100, 0, 0, 0, i * 500)
-            print(drone.get_position_data)
-        else:
-            drone.sendControlWhile(0, 100, 0, 0, i * 500)
-            drone.sendControlWhile(100, 0, 0, 0, i * 500)
-            print(drone.get_position_data)
-            
+    draw()
+    move(drone)
     drone.reset_move()
     return redirect('/air/')
 
