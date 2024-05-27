@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, redirect
+from flask import Flask, render_template, redirect
 from codrone_edu.drone import *
 import os, sys, time
 now_dir = os.getcwd()

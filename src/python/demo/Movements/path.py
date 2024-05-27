@@ -29,3 +29,18 @@ def move(drone):
         else:
             print(f"Left {duration}")
             drone.sendControlWhile(-100, 0, 0, 0, duration)
+
+def move_test():
+    file = open(now_dir + '\\src\\python\\demo\\Movements\\movements.json')
+    json_path = json.load(file)
+    for i in range(len(json_path['path'])):
+        direction = json_path['path'][i]['direction']
+        duration = json_path['path'][i]['duration']
+        if direction == "forward":
+            print(f"Forward {duration}")
+        elif direction == "right":
+            print(f"Right {duration}")
+        elif direction == "back":
+            print(f"Back {duration}")
+        else:
+            print(f"Left {duration}")
